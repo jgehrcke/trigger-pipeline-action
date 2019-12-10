@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -uo pipefail
 
 if [[ -z "${BUILDKITE_API_ACCESS_TOKEN:-}" ]]; then
   echo "You must set the BUILDKITE_API_ACCESS_TOKEN environment variable (e.g. BUILDKITE_API_ACCESS_TOKEN = \"xyz\")"
@@ -53,12 +53,14 @@ fi
 RESPONSE=$(
   curl \
     --fail \
-    --silent \
     -X POST \
     -H "Authorization: Bearer ${BUILDKITE_API_ACCESS_TOKEN}" \
     "https://api.buildkite.com/v2/organizations/${ORG_SLUG}/pipelines/${PIPELINE_SLUG}/builds" \
     -d "$JSON"
 )
+
+echo "curl exit code: $?"
+echo $RESPONSE
 
 echo ""
 echo "Build created:"
