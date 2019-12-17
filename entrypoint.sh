@@ -56,6 +56,9 @@ if [[ "${BUILD_ENV_VARS:-}" ]]; then
   fi
 fi
 
+echo "JSON doc, to be POSTed for creating build:"
+echo "${JSON}"
+
 RESPONSE=$(
   curl \
     --fail \
@@ -66,7 +69,8 @@ RESPONSE=$(
 )
 
 echo "curl exit code: $?"
-echo $RESPONSE
+echo "response:"
+echo "$RESPONSE"
 
 echo ""
 echo "Build created:"
