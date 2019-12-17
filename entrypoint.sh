@@ -30,10 +30,16 @@ JSON=$(
     --arg MESSAGE "$MESSAGE" \
     --arg NAME    "$NAME" \
     --arg EMAIL   "$EMAIL" \
+    --arg PR_NUMBER "$PR_NUMBER" \
+    --arg PR_BASE_BRANCH "$PR_BASE_BRANCH" \
+    --arg PR_REPO "$PR_REPO" \
     '{
       "commit": $COMMIT,
       "branch": $BRANCH,
       "message": $MESSAGE,
+      "pull_request_id": $PR_NUMBER,
+      "pull_request_base_branch": $PR_BASE_BRANCH,
+      "pull_request_repository": $PR_REPO,
       "author": {
         "name": $NAME,
         "email": $EMAIL
